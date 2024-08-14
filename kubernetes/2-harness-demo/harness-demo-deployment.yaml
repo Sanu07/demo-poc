@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: harness-demo
-        image: sanu07/harness-demo:v1
+        image: sanu07/harness-demo:v3
         imagePullPolicy: IfNotPresent
         env:   # Setting Enviornmental Variables
         - name: custom.config   # Setting Database host address from configMap
@@ -36,19 +36,19 @@ spec:
           limits:
             cpu: 500m
             memory: 1024Mi
-        readinessProbe:
-          httpGet:
-            path: /healthCheck #readinessProbe will confirm the health of the service before starting accepting any request
-            port: h-port
-          failureThreshold: 5
-          periodSeconds: 10
-          initialDelaySeconds: 60
-        livenessProbe:
-          httpGet:
-            path: /healthCheck #livenessProbe will confirm app is up and running
-            port: h-port
-          failureThreshold: 5
-          periodSeconds: 10
-          initialDelaySeconds: 60
+        # readinessProbe:
+        #   httpGet:
+        #     path: /healthCheck #readinessProbe will confirm the health of the service before starting accepting any request
+        #     port: h-port
+        #   failureThreshold: 5
+        #   periodSeconds: 10
+        #   initialDelaySeconds: 60
+        # livenessProbe:
+        #   httpGet:
+        #     path: /healthCheck #livenessProbe will confirm app is up and running
+        #     port: h-port
+        #   failureThreshold: 5
+        #   periodSeconds: 10
+        #   initialDelaySeconds: 60
       restartPolicy: Always
       terminationGracePeriodSeconds: 30 #helps in graceful termination
